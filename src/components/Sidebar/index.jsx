@@ -11,7 +11,7 @@ const Sidebar = () => {
     "UAR",
   ];
   return (
-    <div className="flex flex-col border-r border-r-1 border-[#777676] h-[100vh] w-[17vw] py-[6vh] px-[2vw]">
+    <div className="fixed flex flex-col border-r border-r-1 border-[#777676] h-[100vh] w-[17vw] py-[6vh] px-[2vw]">
 
       <div className="h-[10%]">
         <img src={"./logohere.png"} alt="" />
