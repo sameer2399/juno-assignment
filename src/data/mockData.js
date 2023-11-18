@@ -6,7 +6,7 @@ export const pendingData = [
     riskLevel: "Medium",
     triggerReason: "IP Change",
     inQueueFor: "4 days",
-    dateAdded: "",
+    dateAdded: Date.now() + 4,
     reviewInfo: {
       isReviewed: "Yes",
       reviewedDate: "23 Aug, 2023",
@@ -19,7 +19,7 @@ export const pendingData = [
     riskLevel: "High",
     triggerReason: "FIFO",
     inQueueFor: "4 days",
-    dateAdded: "",
+    dateAdded: Date.now() + 3,
     reviewInfo: {
       isReviewed: "No",
       reviewedDate: "",
@@ -32,7 +32,7 @@ export const pendingData = [
     riskLevel: "Low",
     triggerReason: "IP Change",
     inQueueFor: "5 days",
-    dateAdded: "",
+    dateAdded: Date.now() + 5,
     reviewInfo: {
       isReviewed: "No",
       reviewedDate: "",
@@ -45,7 +45,7 @@ export const pendingData = [
     riskLevel: "High",
     triggerReason: "FIFO",
     inQueueFor: "5 days",
-    dateAdded: "",
+    dateAdded: Date.now() + 5,
     reviewInfo: {
       isReviewed: "Yes",
       reviewedDate: "12 Sep, 2023",
@@ -58,7 +58,7 @@ export const pendingData = [
     riskLevel: "Low",
     triggerReason: "FIFO",
     inQueueFor: "5 days",
-    dateAdded: "",
+    dateAdded: Date.now() + 5,
     reviewInfo: {
       isReviewed: "Yes",
       reviewedDate: "12 Sep, 2023",
@@ -71,10 +71,92 @@ export const pendingData = [
     riskLevel: "Low",
     triggerReason: "FIFO",
     inQueueFor: "5 days",
-    dateAdded: "",
+    dateAdded: Date.now() + 5,
     reviewInfo: {
       isReviewed: "5 days",
       reviewedDate: "12 Sep, 2023",
     },
   },
+];
+
+export const completedData = [
+  {
+    id: 1,
+    name: "Sam Altman",
+    email: "samaltman123@gmail.com",
+    riskLevel: "Medium",
+    actionReason: "Flagged",
+    timeToClose: "14 days",
+    dateAdded: Date.now() + 4,
+    actionInfo: {
+      name: "Neil",
+      email: "neil@onjuno.com",
+    },
+  },
+  {
+    id: 2,
+    name: "Sameer Choubey",
+    email: "sameerchoubey123@gmail.com",
+    riskLevel: "High",
+    actionReason: "Closed",
+    timeToClose: "14 days",
+    dateAdded: Date.now() + 4,
+    actionInfo: {
+      name: "Pratik",
+      email: "pratik@onjuno.com",
+    },
+  },
+  {
+    id: 3,
+    name: "Adarsh Panikkar",
+    email: "adarsh@onjuno.com",
+    riskLevel: "Low",
+    actionReason: "Cleared",
+    timeToClose: "15 days",
+    dateAdded: Date.now() + 4,
+    actionInfo: {
+      name: "Prashant",
+      email: "prashant@onjuno.com",
+    },
+  },
+  {
+    id: 4,
+    name: "Pratik Shetty",
+    email: "pratik3@gmail.com",
+    riskLevel: "High",
+    actionReason: "SOI Requested",
+    timeToClose: "15 days",
+    dateAdded: Date.now() + 4,
+    actionInfo: {
+      name: "Rasleen Kaur",
+      email: "rasleen@onjuno.com",
+    },
+  },
+  {
+    id: 5,
+    name: "Elon Musk",
+    email: "elon@twitterceo.com",
+    riskLevel: "Low",
+    actionReason: "Flagged",
+    timeToClose: "15 days",
+    dateAdded: Date.now() + 4,
+    actionInfo: {
+      name: "Pratik Shetty",
+      email: "pratik@onjuno.com",
+    },
+  },
+  {
+    id: 6,
+    name: "Trina Kundu",
+    email: "trina@onjuno.com",
+    riskLevel: "Low",
+    actionReason: "Closed",
+    timeToClose: "15 days",
+    dateAdded: Date.now() + 4,
+    actionInfo: {
+      name: "Varun Deshpande",
+      email: "varun@onjuno.com",
+    },
+  },
+  
 ];
