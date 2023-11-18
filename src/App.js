@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Monitoring } from "./pages";
 
 function App() {
@@ -8,8 +8,8 @@ function App() {
   <Router>
       <Routes>
         
-          <Route path="/" element={<h1>Sameer Anand</h1>} />
           <Route path="/monitoring" element={<Monitoring/>} />
+          <Route path="/*" element={<Navigate to={"/monitoring"}/>} />
        
       </Routes>
     </Router>
