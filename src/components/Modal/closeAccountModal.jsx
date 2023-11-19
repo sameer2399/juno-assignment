@@ -5,7 +5,7 @@ const CloseAccountModal = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="flex justify-between">
-        <h1 className="text-lg font-semibold">Close account</h1>
+        <h1 className="text-lg text-[18px] font-[500]">Close account</h1>
         <svg
           onClick={onClose}
           width="24"
@@ -31,23 +31,45 @@ const CloseAccountModal = ({ isOpen, onClose }) => {
       </div>
       <form className="mt-4 flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <label>Email</label>
-          <input type="text" className="w-full border" />
+          <label className="text-[14px] font-[400] text-[#777676]">Email</label>
+          <input type="text" className="w-full border rounded-md h-8" />
+        </div>
+        <div className="flex gap-6 ">
+          <div>
+            <label className="text-[14px] font-[400] text-[#050505]">Want to file UAR</label>
+          </div>
+
+          <div>
+            <input className="border border-[#C9C8C8]" type="radio" name="" />
+            <label className="ml-1 text-[14px] font-[400] text-[#050505] ">Yes</label>
+            <input className="ml-4" type="radio" name="" />
+            <label className="ml-1 text-[14px] font-[400] text-[#050505]">No</label>
+          </div>
         </div>
         <div className="flex flex-col gap-2">
-          <label>Email</label>
-          <input type="text" className="w-full border" />
+          <label className="text-[14px] text-[#777676]">Reason</label>
+          <input type="text" className="w-full border rounded-md h-8" />
         </div>
         <div className="flex flex-col gap-2">
-          <label>Email</label>
-          <input type="text" className="w-full border" />
+          <label className="text-[14px] text-[#777676]">Note</label>
+          <textarea
+            className="border border-[#E4E4E4] rounded-md"
+            name=""
+            id=""
+            cols="30"
+            rows="3"
+          ></textarea>
         </div>
         <div className="flex justify-between">
-          <div>
+          <div className="mt-[0.65rem]">
             <input type="radio" name="" />
-            <label className="ml-2">Charge closure fee</label>
+            <label className="ml-2 text-[14px] text-[#777676]">
+              Charge closure fee
+            </label>
           </div>
-          <button className="">Submit</button>
+          <button className="bg-[#E4E4E4] text-[#ADADAD] font-[500] text-[16px] py-3 px-9 rounded-lg">
+            Close Account
+          </button>
         </div>
       </form>
     </Modal>

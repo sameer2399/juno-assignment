@@ -9,7 +9,7 @@ import { pendingData, completedData } from "../../data/mockData";
 import { useState, useEffect } from "react";
 
 const Monitoring = () => {
-  const [ searchText, setSearchText ] = useState('');
+  const [searchText, setSearchText] = useState("");
   const [triggerReasons, setTriggerReasons] = useState([]);
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
   const [isCloseAccountModalOpen, setIsCloseAccountModalOpen] = useState(false);
@@ -32,7 +32,8 @@ const Monitoring = () => {
 
   const handleFilterDataBasedOnReason = (reason) => {
     if (!data) return;
-    if (reason === "Trigger reason" || reason === "Action reason") return setData(originalData);
+    if (reason === "Trigger reason" || reason === "Action reason")
+      return setData(originalData);
     if (selectedTab.name === "Pending") {
       const filteredData = pendingData.filter(
         (item) => item.triggerReason === reason
@@ -45,7 +46,6 @@ const Monitoring = () => {
       setData(filteredData);
     }
   };
-
 
   const handleFilterDataBasedOnRisk = (risk) => {
     if (!data) return;
@@ -62,8 +62,6 @@ const Monitoring = () => {
       setData(filteredData);
     }
   };
-
-
 
   const handleToggleCloseAccount = () =>
     setIsCloseAccountModalOpen((prev) => !prev);
@@ -83,10 +81,6 @@ const Monitoring = () => {
     setTriggerReasons([...triggerReasons]);
   };
 
-
-
-
-
   return (
     <div className="flex">
       <Sidebar />
@@ -97,7 +91,7 @@ const Monitoring = () => {
       <div className="pl-[20vw] pt-8">
         <h1 className="font-[500] text-2xl">Monitoring</h1>
 
-        <div className="flex justify-between w-[75vw] pt-4 pb-0 border-b-2 border-[#e4e4e4]">
+        <div className="absolute flex justify-between w-[75vw] pt-4 pb-0 border-b-2 border-[#e4e4e4]">
           <div>
             {tabs.map((tab, index) => (
               <button
@@ -106,8 +100,7 @@ const Monitoring = () => {
                   if (tab === selectedTab) return;
                   setSelectedTab(tab);
                 }}
-                //border-[#4643EE]
-                className={`text-[14px]  font-[500] mt-2 px-4 pb-4   ${
+                className={`text-[14px] font-[500] mt-[0.5rem] -mb-[0.12rem] px-4 pb-4 pl-2   ${
                   selectedTab === tab
                     ? "text-[#4643EE] border-[#4643EE] border-b-2"
                     : "text-[#ADADAD]"
@@ -134,25 +127,27 @@ const Monitoring = () => {
 
         {selectedTab.name === "Pending" ? (
           <>
-            <div className=" flex gap-2 w-[75vw] mt-10">
+            <div className=" flex gap-2 w-[75vw] mt-24">
               <div className="flex relative">
                 <img
-                  className="absolute mt-[1rem] ml-4"
+                  className="absolute mt-[1.1rem] ml-4"
                   src="./search.png"
                   alt=""
                 />
                 <input
-                  className="border border-[#ADADAD] text-[14px] font-[500] rounded-md w-[30vw] p-2 pl-10"
+                  className="border h-[2.2rem] mt-2 border-[#ADADAD] text-[14px] font-[500] rounded-md w-[30vw] pl-10"
                   type="text"
                   name=""
                   placeholder="Search"
                   value={searchText}
                   id=""
-                  onChange={(e) => {setSearchText(e.target.value)
-                  const filteredData = originalData.filter(
-                    (item) => item.name.toLowerCase().includes(searchText.toLowerCase())
-                  );
-                  setData(filteredData);
+                  onChange={(e) => {
+                    setSearchText(e.target.value);
+                    if(e.target.value === "") return setData(originalData);
+                    const filteredData = originalData.filter((item) =>
+                      item.name.toLowerCase().includes(searchText.toLowerCase())
+                    );
+                    setData(filteredData);
                   }}
                 />
               </div>
@@ -199,16 +194,16 @@ const Monitoring = () => {
             <Table data={data} selected={selectedTab.name} />
           </>
         ) : (
-           <>
-            <div className=" flex gap-2 w-[75vw] mt-10">
+          <>
+            <div className=" flex gap-2 w-[75vw] mt-24">
               <div className="flex relative">
                 <img
-                  className="absolute mt-[1rem] ml-4"
+                  className="absolute mt-[1.1rem] ml-4"
                   src="./search.png"
                   alt=""
                 />
                 <input
-                  className="border border-[#ADADAD] text-[14px] font-[500] rounded-md w-[30vw] p-2 pl-10"
+                  className="h-[2.2rem] mt-2 border border-[#ADADAD] text-[14px] font-[500] rounded-md w-[30vw] p-2 pl-10"
                   type="text"
                   name=""
                   placeholder="Search"

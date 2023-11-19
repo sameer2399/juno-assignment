@@ -21,7 +21,7 @@ const Table = (props) => {
                 {item.email}
               </p>
             </div>
-            <div className="pt-3">
+            <div className="pt-3 pl-4">
               <img src="./external-link.png" alt="" />
             </div>
           </div>
@@ -30,9 +30,15 @@ const Table = (props) => {
           style={{
             color: checkRiskLevelStatus(item.riskLevel)?.color,
           }}
-          className=" font-[500] text-[14px]"
+          className="flex gap-[0.4rem] font-[600] text-[14px]"
         >
-          {item.riskLevel}
+          <div
+            style={{
+              backgroundColor: checkRiskLevelStatus(item.riskLevel)?.color,
+            }}
+            className="mt-6 h-[0.65rem] w-[0.65rem] rounded-full"
+          ></div>
+          <div className="mt-[1.15rem]">{item.riskLevel}</div>
         </td>
         {selected === "Pending" ? (
           <td className="text-[#050505] font-[500] text-[14px]">
@@ -44,11 +50,11 @@ const Table = (props) => {
           </td>
         )}
         {selected === "Pending" ? (
-          <td className="text-[#050505] font-[500] text-[14px]">
+          <td className="text-[#050505] font-[500] text-[16px]">
             {item.inQueueFor}
           </td>
         ) : (
-          <td className="text-[#050505] font-[500] text-[14px]">
+          <td className="text-[#050505] font-[500] text-[16px]">
             {item.timeToClose}
           </td>
         )}
@@ -57,13 +63,13 @@ const Table = (props) => {
         </td>
         {selected === "Pending" ? (
           <td className="text-[#777676] font-[500] text-[12px]">
-            <p className="text-[#050505] font-[500] text-[14px]">
+            <p className="text-[#050505] font-[500] text-[16px]">
               {item.reviewInfo?.isReviewed}
             </p>
             {item.reviewInfo?.reviewedDate}
           </td>
         ) : (
-          <td className="text-[#777676] font-[500] text-[12px]">
+          <td className="text-[#777676] font-[500] text-[12px] pl-2">
             <p className="text-[#050505] font-[500] text-[14px]">
               {item.actionInfo?.name}
             </p>
@@ -79,23 +85,43 @@ const Table = (props) => {
       <table className="mt-4 table-auto w-[75vw] border border-separate border-spacing-0 border-[#E4E4E4] rounded-t-3xl overflow-hidden">
         <thead className="text-[#050505] text-[12px] font-[500] bg-[#F5F5F5]">
           <tr className="">
-            <th className="p-3 text-left">User</th>
-            <th>Risk level</th>
+            <th className=" text-left w-[30vw] p-4">User</th>
+            <th className=" text-left w-[10vw] gap-2 flex  p-4 pl-0">
+              <div>Risk level</div>
+              <div>
+                <img className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
+              </div>
+            </th>
             {selected === "Pending" ? (
-              <th>Trigger reason</th>
+              <th className="w-[18vw] text-left ">Trigger reason</th>
             ) : (
-              <th>Action reason</th>
+              <th className="w-[18vw] text-left ">Action reason</th>
             )}
             {selected === "Pending" ? (
-              <th>In queue for</th>
+              <th className="w-[10vw] text-left flex gap-2">
+                <div>In queue for</div>
+                <div>
+                  <img className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
+                </div>
+              </th>
             ) : (
-              <th>Time to close</th>
+              <th className="w-[10vw] text-left flex gap-2  ">
+                <div>Time to close</div>
+                <div>
+                  <img className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
+                </div>
+              </th>
             )}
-            <th>Date added on</th>
+            <th className="w-[19vw] text-left ">
+              <div className="flex gap-2"><div>Date added on</div>
+              <div>
+                <img className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
+              </div></div>
+            </th>
             {selected === "Pending" ? (
-              <th>Previously reviewed</th>
+              <th className="w-[16vw] text-left ">Previously reviewed</th>
             ) : (
-              <th>Action taken by</th>
+              <th className="w-[16vw] text-left pl-2">Action taken by</th>
             )}
           </tr>
         </thead>
