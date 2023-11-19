@@ -1,7 +1,10 @@
 import React from "react";
 import { Modal } from "../index";
+import { useState } from "react";
 
 const CloseAccountModal = ({ isOpen, onClose }) => {
+
+  
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="flex justify-between">
@@ -36,14 +39,25 @@ const CloseAccountModal = ({ isOpen, onClose }) => {
         </div>
         <div className="flex gap-6 ">
           <div>
-            <label className="text-[14px] font-[400] text-[#050505]">Want to file UAR</label>
+            <label className="text-[14px] font-[400] text-[#050505]">
+              Want to file UAR
+            </label>
           </div>
 
-          <div>
-            <input className="border border-[#C9C8C8]" type="radio" name="" />
-            <label className="ml-1 text-[14px] font-[400] text-[#050505] ">Yes</label>
-            <input className="ml-4" type="radio" name="" />
-            <label className="ml-1 text-[14px] font-[400] text-[#050505]">No</label>
+          <div className="mt-[0.08rem]">
+            <input
+              className="border border-[#C9C8C8]"
+              type="radio"
+              name="uar"
+              value="Yes"
+            />
+            <label name="uar" className="fixed pl-2 text-[14px] font-[400] text-[#050505] ">
+              Yes
+            </label>
+            <input className="ml-20" type="radio" name="uar" value="No" />
+            <label name="uar" className="fixed pl-2 text-[14px] font-[400] text-[#050505]">
+              No
+            </label>
           </div>
         </div>
         <div className="flex flex-col gap-2">
@@ -67,7 +81,7 @@ const CloseAccountModal = ({ isOpen, onClose }) => {
               Charge closure fee
             </label>
           </div>
-          <button className="bg-[#E4E4E4] text-[#ADADAD] font-[500] text-[16px] py-3 px-9 rounded-lg">
+          <button  className="bg-[#E4E4E4] text-[#ADADAD] font-[500] text-[16px] py-3 px-9 rounded-lg">
             Close Account
           </button>
         </div>

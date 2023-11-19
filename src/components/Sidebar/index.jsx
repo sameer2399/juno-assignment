@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+  
   const menuItems = [
     "Overview",
     "Onboarding",
@@ -10,6 +11,8 @@ const Sidebar = () => {
     "Source of Income",
     "UAR",
   ];
+
+ 
   return (
     <div className="fixed flex flex-col border-r border-r-1 border-[#777676] h-[100vh] w-[17vw] py-[6vh] px-[2vw]">
 
@@ -21,6 +24,7 @@ const Sidebar = () => {
         
           {menuItems.map((item, index) => (
             <NavLink
+            style={{ padding: 12 }}
             key={index}
             to={`/${item.toLowerCase()}`}
             className={({ isActive, isPending }) =>
@@ -34,7 +38,7 @@ const Sidebar = () => {
         
       </div>
 
-      <div className="h-[10%] flex justify-center items-center gap-2">
+      <div className="h-[10%] flex justify-center items-center gap-2 extralg:-ml-8">
         <img className="h-12" src="./user.png" alt="" />
         <div className="">
           <p className="font-bold">Elon Musk</p>
