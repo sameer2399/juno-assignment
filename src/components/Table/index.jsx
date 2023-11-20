@@ -30,7 +30,7 @@ const Table = (props) => {
                 {item.email}
               </p>
             </div>
-            <div className="pt-3 pl-4">
+            <div className="pt-3 pl-4 cursor-pointer">
               <img src="./external-link.png" alt="" />
             </div>
           </div>
