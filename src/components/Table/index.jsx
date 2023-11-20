@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { checkRiskLevelStatus } from "../../utils/helper_function";
 
 const Table = (props) => {
   const { data, selected } = props;
   console.log(data, selected);
+  const [tempData, setTempData] = useState(null);
+  const [isDateSorted, setIsDateSorted] = useState(false);
+  const [isRiskSorted, setIsRiskSorted] = useState(false);
+  const [isTimeToCloseSorted, setIsTimeToCloseSorted] = useState(false);
+  const [isInQueueForSorted, setIsInQueueForSorted] = useState(false);
 
-  if (!data) return null;
+  useEffect(() => {
+    setTempData(data);
+  }, [data]);
 
-  const displayData = data.map((item, index) => {
+  if(!tempData) return null;
+
+  const displayData = tempData.map((item, index) => {
     return (
       <tr key={index} className="overflow-hidden">
         <td className="p-2">
@@ -80,6 +89,51 @@ const Table = (props) => {
     );
   });
 
+
+  //sort data based on date added on
+  const handleSortDataBasedOnDate = () => {
+    const sortedData = [...tempData].sort((a, b) => {
+      return new Date(b.dateAddedOn) - new Date(a.dateAddedOn);
+    });
+    setTempData(sortedData);
+  };  
+
+  //sort data based on risk level strings low, medium, high
+  const handleSortDataBasedOnRiskLevel = () => {
+    const sortedData = [...tempData].sort((a, b) => {
+      if(a.riskLevel === "Low" && b.riskLevel === "Medium") return -1;
+      if(a.riskLevel === "Low" && b.riskLevel === "High") return -1;
+      if(a.riskLevel === "Medium" && b.riskLevel === "High") return -1;
+      if(a.riskLevel === "Medium" && b.riskLevel === "Low") return 1;
+      if(a.riskLevel === "High" && b.riskLevel === "Low") return 1;
+      if(a.riskLevel === "High" && b.riskLevel === "Medium") return 1;
+      return 0;
+    });
+    setTempData(sortedData);
+  };
+
+  //sort data based on comparing strings in time to close
+  const handleSortDataBasedOnTimeToClose = () => {
+    const sortedData = [...tempData].sort((a, b) => {
+      if(a.timeToClose < b.timeToClose) return -1;
+      if(a.timeToClose > b.timeToClose) return 1;
+      return 0;
+    });
+    setTempData(sortedData);
+  };
+
+  //sort data based on comparing strings in in queue for
+  const handleSortDataBasedOnInQueueFor = () => {
+    const sortedData = [...tempData].sort((a, b) => {
+      if(a.inQueueFor < b.inQueueFor) return -1;
+      if(a.inQueueFor > b.inQueueFor) return 1;
+      return 0;
+    });
+    setTempData(sortedData);
+  };
+
+
+
   return (
     <>
       <table className="mt-4 table-auto w-[75vw] border border-separate border-spacing-0 border-[#E4E4E4] rounded-t-3xl overflow-hidden">
@@ -89,7 +143,14 @@ const Table = (props) => {
             <th className=" text-left w-[10vw] gap-2 flex  p-4 pl-0">
               <div>Risk level</div>
               <div>
-                <img className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
+                <img onClick={(e) => {
+                  setIsRiskSorted(!isRiskSorted);
+                  if(isRiskSorted){
+                    handleSortDataBasedOnRiskLevel();
+                  }else{
+                    setTempData(data);
+                  }
+                }} className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
               </div>
             </th>
             {selected === "Pending" ? (
@@ -101,21 +162,42 @@ const Table = (props) => {
               <th className="w-[10vw] text-left flex gap-2">
                 <div>In queue for</div>
                 <div>
-                  <img className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
+                  <img onClick={(e) => {
+                    setIsInQueueForSorted(!isInQueueForSorted);
+                    if(isInQueueForSorted){
+                      handleSortDataBasedOnInQueueFor();
+                    }else{
+                      setTempData(data);
+                    }
+                  }} className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
                 </div>
               </th>
             ) : (
               <th className="w-[10vw] text-left flex gap-2  ">
                 <div>Time to close</div>
                 <div>
-                  <img className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
+                  <img onClick={(e) => {
+                    setIsTimeToCloseSorted(!isTimeToCloseSorted);
+                    if(isTimeToCloseSorted){
+                      handleSortDataBasedOnTimeToClose();
+                    }else{
+                      setTempData(data);
+                    }
+                  }} className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
                 </div>
               </th>
             )}
             <th className="w-[19vw] text-left ">
               <div className="flex gap-2"><div>Date added on</div>
               <div>
-                <img className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
+                <img onClick={(e) => {
+                  setIsDateSorted(!isDateSorted);
+                  if(isDateSorted){
+                    handleSortDataBasedOnDate();
+                  }else{
+                    setTempData(data);
+                  }
+                }} className="cursor-pointer" src="./chevrons-up-down.png" alt="" />
               </div></div>
             </th>
             {selected === "Pending" ? (

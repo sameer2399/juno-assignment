@@ -1,10 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Modal } from "../index";
-import { useState } from "react";
+import { useState} from "react";
 
 const CloseAccountModal = ({ isOpen, onClose }) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    reason: "",
+    note: "",
+    uar: "",
+    closureFee: "",
+  });
 
-  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  console.log(formData);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Perform any additional actions on form submission
+    console.log("Form submitted:", formData);
+    onClose();
+    alert("Form submitted");
+  };
+
+  useEffect(() => {
+    // Reset form data on modal close
+    if (!isOpen) {
+      setFormData({
+        email: "",
+        reason: "",
+        note: "",
+        uar: "",
+        closureFee: "",
+      });
+    }
+  }, [isOpen]);
+
+  const isFormValid = () => {
+    // Check if all fields are filled
+    return Object.values(formData).every((value) => value.trim() !== "");
+  };
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="flex justify-between">
@@ -32,10 +73,15 @@ const CloseAccountModal = ({ isOpen, onClose }) => {
           />
         </svg>
       </div>
-      <form className="mt-4 flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <label className="text-[14px] font-[400] text-[#777676]">Email</label>
-          <input type="text" className="w-full border rounded-md h-8" />
+          <input
+            type="text"
+            name="email"
+            onChange={handleInputChange}
+            className="w-full border rounded-md h-8"
+          />
         </div>
         <div className="flex gap-6 ">
           <div>
@@ -49,39 +95,66 @@ const CloseAccountModal = ({ isOpen, onClose }) => {
               className="border border-[#C9C8C8]"
               type="radio"
               name="uar"
+              onChange={handleInputChange}
               value="Yes"
             />
-            <label name="uar" className="fixed pl-2 text-[14px] font-[400] text-[#050505] ">
+            <label
+              name="uar"
+              className="fixed pl-2 text-[14px] font-[400] text-[#050505] "
+            >
               Yes
             </label>
-            <input className="ml-20" type="radio" name="uar" value="No" />
-            <label name="uar" className="fixed pl-2 text-[14px] font-[400] text-[#050505]">
+            <input
+              className="ml-20"
+              type="radio"
+              name="uar"
+              onChange={handleInputChange}
+              value="No"
+            />
+            <label
+              name="uar"
+              className="fixed pl-2 text-[14px] font-[400] text-[#050505]"
+            >
               No
             </label>
           </div>
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-[14px] text-[#777676]">Reason</label>
-          <input type="text" className="w-full border rounded-md h-8" />
+          <input
+            type="text"
+            name="reason"
+            onChange={handleInputChange}
+            className="w-full border rounded-md h-8"
+          />
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-[14px] text-[#777676]">Note</label>
           <textarea
             className="border border-[#E4E4E4] rounded-md"
-            name=""
-            id=""
+            name="note"
+            onChange={handleInputChange}
             cols="30"
             rows="3"
           ></textarea>
         </div>
         <div className="flex justify-between">
           <div className="mt-[0.65rem]">
-            <input type="radio" name="" />
+            <input
+              type="radio"
+              value={"Yes"}
+              name="closureFee"
+              onChange={handleInputChange}
+            />
             <label className="ml-2 text-[14px] text-[#777676]">
               Charge closure fee
             </label>
           </div>
-          <button  className="bg-[#E4E4E4] text-[#ADADAD] font-[500] text-[16px] py-3 px-9 rounded-lg">
+          <button
+            type="submit"
+            disabled={!isFormValid()}
+            className={`${isFormValid() ? "bg-[#4643EE] text-[#FFFFFF]" : "bg-[#E4E4E4] text-[#ADADAD]"} font-[500] text-[16px] py-3 px-9 rounded-lg`}
+          >
             Close Account
           </button>
         </div>

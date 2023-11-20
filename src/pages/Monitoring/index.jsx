@@ -81,6 +81,9 @@ const Monitoring = () => {
     setTriggerReasons([...triggerReasons]);
   };
 
+
+  
+
   return (
     <div className="flex">
       <Sidebar />
@@ -208,6 +211,15 @@ const Monitoring = () => {
                   name=""
                   placeholder="Search"
                   id=""
+                  value={searchText}
+                  onChange={(e) => {
+                    setSearchText(e.target.value);
+                    if(e.target.value === "") return setData(originalData);
+                    const filteredData = originalData.filter((item) =>
+                      item.name.toLowerCase().includes(searchText.toLowerCase())
+                    );
+                    setData(filteredData);
+                  }}
                 />
               </div>
 
