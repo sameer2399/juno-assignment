@@ -80,7 +80,7 @@ const CloseAccountModal = ({ isOpen, onClose }) => {
             type="text"
             name="email"
             onChange={handleInputChange}
-            className="w-full border rounded-md h-8"
+            className="w-full border rounded-md h-8 p-2 text-[14px] font-[400] outline-none"
           />
         </div>
         <div className="flex gap-6 ">
@@ -125,13 +125,13 @@ const CloseAccountModal = ({ isOpen, onClose }) => {
             type="text"
             name="reason"
             onChange={handleInputChange}
-            className="w-full border rounded-md h-8"
+            className="w-full border rounded-md h-8 p-2 text-[14px] font-[400] outline-none"
           />
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-[14px] text-[#777676]">Note</label>
           <textarea
-            className="border border-[#E4E4E4] rounded-md"
+            className="border border-[#E4E4E4] rounded-md p-2 text-[14px] font-[400] outline-none"
             name="note"
             onChange={handleInputChange}
             cols="30"
